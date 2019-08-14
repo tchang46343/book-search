@@ -1,27 +1,28 @@
 import React, { Component } from "react";
 import "./searchBox.css";
+
 class searchBox extends Component {
-  handleButtonClicked = () => {
-    console.log(this.text);
+  handleButtonClicked = event => {
+    event.preventDefault();
+    // console.log(event.target.userEntry.value);
+    this.props.search(event.target.userEntry.value);
   };
 
   render() {
     return (
-      <div className="searchField">
+      <form onSubmit={this.handleButtonClicked} className="searchField">
         <p className="searchTitle">
           Search:
           <input
             className="userInput"
             placeholder="Wolf of Wall Street"
             required
-            type={Text}
-            // value={this.state.value}
+            type="text"
+            name="userEntry"
           />
-          <button onClick={this.handleButtonClicked} className="userSearch">
-            Search
-          </button>
+          <button className="userSearch">Search</button>
         </p>
-      </div>
+      </form>
     );
   }
 }

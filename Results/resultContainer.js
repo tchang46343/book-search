@@ -2,17 +2,28 @@ import React, { Component } from "react";
 import "./resultContainer.css";
 import listing from "./resultList";
 
-class resultContainer extends Component {
+class ResultContainer extends Component {
   state = {};
   render() {
+    console.log(this.props);
+    const books = this.props.books.map(book => {
+      let amount = 0;
+      if (book.saleInfo.listPrice) {
+        amount = book.saleInfo.listPrice.amount;
+      }
+
+      return (
+        <li>
+          {book.id} {amount}
+        </li>
+      );
+    });
     return (
       <div>
-        <ul>
-          <li />
-        </ul>
+        <ul>{books}</ul>
       </div>
     );
   }
 }
 
-export default resultContainer;
+export default ResultContainer;
